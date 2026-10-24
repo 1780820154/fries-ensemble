@@ -112,4 +112,9 @@ python -m unittest discover -s tests -v
 - 推送分支：`main -> main`
 - 推送内容包括 14 个必需与辅助文件；`artifacts/` 被 `.gitignore` 排除，未上传 Token、实时接口响应或发布脚本。
 
-发布前已再次运行仓库校验。报名 Issue 结果将在实际提交后追加。
+发布前已再次运行仓库校验。报名 Issue 已按官方格式提交：
+
+- Issue 标题：【参赛申请】薯条多重奏 fries-ensemble
+- Issue 地址：https://github.com/M-China/mcd-developer-innovation-challenge/issues/1205
+- Issue 状态：open
+- 提交时间：2026-10-24
