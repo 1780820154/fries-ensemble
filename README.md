@@ -136,3 +136,7 @@ fries-ensemble/
 - `workbuddy.md`：WorkBuddy 开发对话上下文。
 
 活动规则以 [M-China/mcd-developer-innovation-challenge](https://github.com/M-China/mcd-developer-innovation-challenge) 为准。
+
+## 仓库地址
+
+https://github.com/1780820154/fries-ensemble

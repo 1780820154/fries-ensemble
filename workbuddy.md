@@ -104,4 +104,12 @@ python -m unittest discover -s tests -v
 
 ## GitHub 发布追加记录
 
-待公开仓库创建并推送后追加仓库地址、公开访问结果和报名 Issue 结果；发布前仍需再次执行凭证扫描。
+2026-10-24，WorkBuddy 通过本机 Git Credential Manager 完成 GitHub 浏览器授权后，创建并推送公开仓库：
+
+- 项目地址：https://github.com/1780820154/fries-ensemble
+- 仓库可见性：Public
+- 初始提交：`92275e3 Initial commit: fries-ensemble`
+- 推送分支：`main -> main`
+- 推送内容包括 14 个必需与辅助文件；`artifacts/` 被 `.gitignore` 排除，未上传 Token、实时接口响应或发布脚本。
+
+发布前已再次运行仓库校验。报名 Issue 结果将在实际提交后追加。
