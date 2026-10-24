@@ -46,6 +46,8 @@ python scripts/fries_planner.py --menu <query-meals结果.json> --mode duet
 python scripts/fries_planner.py --menu <query-meals结果.json> --mode share --size large
 ```
 
+未指定规格的普通短句默认按 `auto` 处理：优先中薯、再大薯、小薯，最后接受菜单里的未知规格名称（例如菜单只写“薯条”但详情为“中薯条”）。这样不会把“来三份薯条”误判成规格缺失。
+
 将输出中的商品编码和数量映射到 `calculate-price` 当前工具 schema。`ready_for_official_price` 仅表示本地候选已确定，不表示价格已核实，也不表示订单已创建。`needs_clarification` 表示必须由用户消除歧义。
 
 菜单原始数据与返回字段可能随服务端演进。解析失败时读取 `references/data-contract.md`，保留原始响应并检查字段，不得编造商品编码。
@@ -61,6 +63,16 @@ python scripts/mcp_client.py call --tool query-meals --args-file <参数.json>
 
 先查看 `list-tools` 返回的实时 schema，再构造参数文件。不要把 Token 写入命令行、参数文件或版本库。
 
+### 端到端只读冒烟测试
+
+配置好 `MCD_MCP_TOKEN` 后，运行只读冒烟测试，验证从时间、门店、菜单、详情到官方算价的完整链路（不会创建订单）：
+
+```bash
+python scripts/smoke_test.py
+```
+
+可通过 `MCD_CITY`、`MCD_KEYWORD`、`MCD_QUANTITY`、`MCD_STORE_CODE`、`MCD_REPORT` 环境变量覆盖默认参数。冒烟测试绝不调用 `create-order`。
+
 ## 异常处理
 
 - 401：提示 Token 无效、过期或未配置，停止调用并引导重新配置。
@@ -74,5 +86,6 @@ python scripts/mcp_client.py call --tool query-meals --args-file <参数.json>
 
 - `scripts/fries_planner.py`：解析快捷指令、筛选实时菜单并生成待算价计划。
 - `scripts/mcp_client.py`：仅用于开发联调的只读 Streamable HTTP MCP 客户端。
+- `scripts/smoke_test.py`：只读端到端冒烟测试，验证整条链路但不创建订单。
 - `references/data-contract.md`：菜单归一化、输出状态和字段映射约定。
 - `tests/`：离线单元测试与模拟 MCP 服务测试；测试数据不代表实时菜单或价格。

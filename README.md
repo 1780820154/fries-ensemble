@@ -89,6 +89,12 @@ python scripts/mcp_client.py call --tool query-meals --args-file <按实时schem
 
 先通过 `list-tools` 核对实时参数 schema。联调客户端只允许白名单内的查询和算价工具，会拒绝 `create-order`、领券、抽奖等写工具。真实下单应通过 WorkBuddy 的受控确认流程完成。
 
+配置好 Token 后，可运行只读端到端冒烟测试，验证时间、门店、菜单、详情到官方算价的完整链路（不会创建订单）：
+
+```bash
+python scripts/smoke_test.py
+```
+
 ## 测试
 
 ```bash

@@ -127,6 +127,10 @@ def parse_request_text(text: str) -> OrderRequest:
     }
     preset = next((value for key, value in preset_aliases.items() if key in compact), "custom")
     default_quantity, default_size = PRESETS.get(preset, (1, "medium"))
+    if preset == "custom":
+        # 未指定规格时按 auto 处理，优先中薯、再大薯、小薯，最后未知规格；
+        # 避免菜单里只有“薯条”这种无规格名称时被误判为缺少规格。
+        default_size = "auto"
 
     quantity = default_quantity
     number = r"(\d+|[一二两三四五六七八九十]{1,3})"

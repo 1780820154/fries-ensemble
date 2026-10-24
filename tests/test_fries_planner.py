@@ -44,6 +44,10 @@ class RequestParsingTests(unittest.TestCase):
         request = parse_request_text("薯条 4 份，小份")
         self.assertEqual((request.quantity, request.size), (4, "small"))
 
+    def test_custom_text_defaults_to_auto_size(self):
+        request = parse_request_text("来三份薯条")
+        self.assertEqual((request.quantity, request.size, request.preset), (3, "auto", "custom"))
+
     def test_flavor_and_auto_size(self):
         request = parse_request_text("来一份海苔摇摇薯条，规格不限")
         self.assertEqual((request.quantity, request.size, request.keyword), (1, "auto", "海苔"))
@@ -115,6 +119,12 @@ class MenuExtractionTests(unittest.TestCase):
     def test_ignores_category_without_product_evidence(self):
         payload = {"categories": [{"id": "cat-1", "name": "薯条"}]}
         self.assertEqual(extract_fries_products(payload), [])
+
+    def test_generic_fries_selected_when_auto_size(self):
+        payload = {"data": {"meals": {"4810": {"name": "薯条", "currentPrice": "14.5"}}}}
+        plan = build_plan(payload, parse_request_text("来三份薯条"))
+        self.assertEqual(plan["status"], "ready_for_official_price")
+        self.assertEqual(plan["items"][0]["code"], "4810")
 
 
 class PlanTests(unittest.TestCase):
