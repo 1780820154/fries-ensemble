@@ -1,0 +1,49 @@
+{
+  "result": {
+    "structuredContent": {
+      "categories": [
+        {
+          "categoryName": "小食",
+          "meals": [
+            {
+              "mealCode": "FRIES-S-DEMO",
+              "mealName": "薯条（小）",
+              "price": "10.00"
+            },
+            {
+              "mealCode": "FRIES-M-DEMO",
+              "mealName": "薯条（中）",
+              "price": "13.50"
+            },
+            {
+              "mealCode": "FRIES-L-DEMO",
+              "mealName": "薯条（大）",
+              "price": "16.50"
+            },
+            {
+              "mealCode": "SHAKE-SEAWEED-DEMO",
+              "mealName": "摇摇薯条（海苔味）",
+              "price": "15.00"
+            },
+            {
+              "mealCode": "COMBO-DEMO",
+              "mealName": "巨无霸薯条套餐",
+              "price": "35.00"
+            },
+            {
+              "mealCode": "HASH-DEMO",
+              "mealName": "脆薯饼",
+              "price": "8.00"
+            },
+            {
+              "mealCode": "SOLD-OUT-DEMO",
+              "mealName": "薯条（中）",
+              "price": "13.50",
+              "soldOut": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

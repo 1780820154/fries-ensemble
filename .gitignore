@@ -1,0 +1,24 @@
+# Credentials and local configuration
+.env
+.env.*
+*.token
+mcp-config.local.json
+secrets.json
+
+# Local MCP responses and generated plans
+.fries-ensemble/
+artifacts/
+*.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.coverage
+htmlcov/
+
+# Packaging and editor files
+dist/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
