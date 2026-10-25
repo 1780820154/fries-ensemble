@@ -10,6 +10,8 @@
 - 三种快捷预设：独奏 1 份中薯、二重奏 2 份中薯、分享装 4 份中薯。
 - 薯条人格：根据份数生成“独奏家 / 二重奏指挥 / 多重奏作曲家 / 薯条乐团团长”和一句乐评。
 - 分享卡：用官方算价生成离线 HTML 价格确认卡，可复制分享文案，不包含支付信息。
+- 薯条档案：本地记录累计点过多少份薯条，按 1 / 10 / 25 / 50 / 100 / 200 / 500 份解锁成就。
+- 成就页：生成可分享的本地 HTML 档案页，展示称号、进度、成就图谱和最近记录。
 - 实时菜单：按当前门店和时段筛选独立薯条，排除套餐与薯饼。
 - 官方算价：最终金额只采用 `calculate-price` 返回结果。
 - 防误触：订单摘要确认后才允许 `create-order`；价格变化需重新确认。
@@ -111,6 +113,40 @@ python scripts/make_share_card.py \
 
 可选主题：`concert`（默认）、`midnight`、`picnic`。
 
+## 薯条档案与成就
+
+订单创建成功后记录本次份数：
+
+```bash
+python scripts/fries_history.py add --quantity 3 --name "中薯条" --store "<门店名>" --total 42.50 --source order
+```
+
+查看累计份数、当前称号和下一成就：
+
+```bash
+python scripts/fries_history.py summary
+```
+
+生成成就页：
+
+```bash
+python scripts/fries_history.py summary --html examples/fries-history.sample.html
+```
+
+历史文件默认位于 `~/.fries-ensemble/history.json`，可用 `FRIES_HISTORY_PATH` 覆盖。只保存日期、份数、商品名、门店名和实付金额；不保存订单号、支付链接、手机号、详细地址或 Token。补录旧订单时使用 `--date YYYY-MM-DD --source manual`。
+
+| 累计份数 | 称号 |
+|---:|---|
+| 1 | 初响 |
+| 10 | 小型合奏 |
+| 25 | 薯条常客 |
+| 50 | 多重奏指挥 |
+| 100 | 百薯乐团 |
+| 200 | 薯条传奇 |
+| 500 | 薯条宇宙 |
+
+示例成就页见 `examples/fries-history.sample.html`，其中的门店和记录均为演示数据。
+
 ## 测试
 
 ```bash
@@ -118,7 +154,7 @@ python -m unittest discover -s tests -v
 python scripts/validate_repo.py
 ```
 
-测试覆盖快捷指令、中文份数、规格与风味选择、套餐排除、歧义处理、SSE 解析、鉴权头传递、会话 ID 以及写操作拦截。模拟 MCP 服务仅在本机回环地址运行。
+测试覆盖快捷指令、中文份数、规格与风味选择、套餐排除、歧义处理、SSE 解析、鉴权头传递、会话 ID、写操作拦截、分享卡 HTML 转义以及历史成就阈值。模拟 MCP 服务仅在本机回环地址运行。
 
 ## 项目结构
 
@@ -135,17 +171,21 @@ fries-ensemble/
 │   ├── mcp_client.py
 │   ├── smoke_test.py
 │   ├── make_share_card.py
+│   ├── fries_history.py
 │   └── validate_repo.py
 ├── references/
 │   └── data-contract.md
 ├── examples/
 │   ├── order-summary.sample.json
-│   └── share-card.sample.html
+│   ├── share-card.sample.html
+│   ├── history.sample.json
+│   └── fries-history.sample.html
 └── tests/
     ├── fixtures/menu.sample.json
     ├── test_fries_planner.py
     ├── test_mcp_client.py
-    └── test_share_card.py
+    ├── test_share_card.py
+    └── test_fries_history.py
 ```
 
 ## 边界与故障处理

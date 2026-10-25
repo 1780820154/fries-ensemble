@@ -83,6 +83,30 @@
 
 `total_yuan`、`original_price_yuan` 和 `discount_yuan` 必须由 `calculate-price` 返回的分值除以 100 得到。`created_order=false` 时卡片显示“价格确认卡 · 尚未下单”；只有实际创建订单后才能设为 `true`。摘要不得包含支付链接、手机号、收货地址、Token 或账户标识。
 
+## 历史档案约定
+
+历史文件默认位于 `~/.fries-ensemble/history.json`，可通过 `FRIES_HISTORY_PATH` 覆盖。结构如下：
+
+```json
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "本地随机标识",
+      "date": "2026-10-24",
+      "recorded_at": "2026-10-24T12:54:00+08:00",
+      "quantity": 3,
+      "items": [{"name": "中薯条", "quantity": 3}],
+      "source": "order",
+      "store": "门店名称",
+      "total_yuan": 42.5
+    }
+  ]
+}
+```
+
+记录只允许 `source=order|manual`，`quantity` 为 1 至 100，商品份数之和必须等于 `quantity`。`store` 只保存门店名称，`note` 最多 80 字。禁止写入订单号、支付链接、手机号、详细地址、Token 或账户标识。累计份数决定称号，阈值见 `scripts/fries_history.py` 的 `MILESTONES`。
+
 ## 写操作边界
 
 规划器与只读联调客户端都不会调用 `create-order`。在 WorkBuddy 中执行真实下单时，必须先展示当前门店、就餐方式、商品、数量和官方总价，再获得明确确认。任何价格或商品变化都会使旧确认失效。

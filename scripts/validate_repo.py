@@ -20,6 +20,7 @@ REQUIRED_FILES = (
     "scripts/mcp_client.py",
     "scripts/smoke_test.py",
     "scripts/make_share_card.py",
+    "scripts/fries_history.py",
 )
 EXPECTED_DECLARATION = """# 参赛声明
 

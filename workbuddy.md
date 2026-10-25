@@ -113,6 +113,17 @@ python -m unittest discover -s tests -v
 5. 安全边界：分享卡只使用官方算价后的归一化数据；未下单与已下单状态严格区分；不会自动发布到社交平台。
 6. 2026-10-25 已推送至公开仓库，提交 `3f69cb9 Add fries persona share card`。
 
+## 薯条档案追加记录
+
+2026-10-25，用户要求增加“历史点了多少份薯条”的记录，并按数量展示成就。WorkBuddy 完成：
+
+- 新增 `scripts/fries_history.py`：本地 JSON 历史文件，默认 `~/.fries-ensemble/history.json`，支持 `add`、`summary`、`list`、`path`。
+- 成就阈值：1 份初响、10 份小型合奏、25 份薯条常客、50 份多重奏指挥、100 份百薯乐团、200 份薯条传奇、500 份薯条宇宙。
+- 订单创建成功后记录日期、份数、商品名、门店名和实付金额；不记录订单号、支付链接、手机号、地址或 Token。
+- 生成成就页 HTML：展示累计份数、当前称号、下一成就进度、成就图谱和最近记录；提供 `examples/history.sample.json` 与 `examples/fries-history.sample.html` 演示。
+- 新增 `tests/test_fries_history.py`，覆盖空档案、阈值边界、混合商品、日期校验、HTML 转义和外链检查。
+- 存档只在本机，不上传；用户可手动补录历史订单。
+
 ## GitHub 发布追加记录
 
 2026-10-24，WorkBuddy 通过本机 Git Credential Manager 完成 GitHub 浏览器授权后，创建并推送公开仓库：

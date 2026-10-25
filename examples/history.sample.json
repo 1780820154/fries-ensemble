@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "sample001",
+      "date": "2026-10-10",
+      "recorded_at": "2026-10-10T12:30:00+08:00",
+      "quantity": 3,
+      "items": [
+        {
+          "name": "中薯条",
+          "quantity": 3
+        }
+      ],
+      "source": "manual",
+      "store": "演示门店 A",
+      "total_yuan": 42.5
+    },
+    {
+      "id": "sample002",
+      "date": "2026-10-14",
+      "recorded_at": "2026-10-14T18:10:00+08:00",
+      "quantity": 2,
+      "items": [
+        {
+          "name": "中薯条",
+          "quantity": 2
+        }
+      ],
+      "source": "manual",
+      "store": "演示门店 B",
+      "total_yuan": 28.0
+    },
+    {
+      "id": "sample003",
+      "date": "2026-10-20",
+      "recorded_at": "2026-10-20T20:05:00+08:00",
+      "quantity": 4,
+      "items": [
+        {
+          "name": "中薯条",
+          "quantity": 2
+        },
+        {
+          "name": "大薯条",
+          "quantity": 2
+        }
+      ],
+      "source": "manual",
+      "store": "演示门店 A",
+      "total_yuan": 60.0
+    },
+    {
+      "id": "sample004",
+      "date": "2026-10-24",
+      "recorded_at": "2026-10-24T12:54:00+08:00",
+      "quantity": 6,
+      "items": [
+        {
+          "name": "中薯条",
+          "quantity": 4
+        },
+        {
+          "name": "摇摇薯条",
+          "quantity": 2
+        }
+      ],
+      "source": "manual",
+      "store": "演示门店 C",
+      "total_yuan": 90.0
+    }
+  ]
+}
