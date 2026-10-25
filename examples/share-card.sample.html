@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>薯条多重奏 · 多重奏作曲家</title>
+<style>
+  :root {
+    --bg: #F6E7CC;
+    --paper: #FFFDF7;
+    --ink: #2A1A12;
+    --muted: #7A6558;
+    --accent: #C8102E;
+    --gold: #F2B705;
+    --soft: #F9D98A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  }
+  .card {
+    width: min(94vw, 720px);
+    background: var(--paper);
+    border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px color-mix(in srgb, var(--ink) 16%, transparent);
+  }
+  .stripe { height: 10px; background: var(--accent); }
+  .inner { padding: 34px 38px 30px; }
+  .eyebrow {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); font-weight: 700;
+  }
+  h1 { margin: 14px 0 4px; font-size: clamp(38px, 7vw, 64px); line-height: .98; letter-spacing: -.04em; }
+  .sub { margin: 0; color: var(--muted); font-size: 14px; }
+  .hero {
+    display: grid; grid-template-columns: 148px 1fr; gap: 24px;
+    align-items: center; margin: 28px 0 24px;
+  }
+  .fries { width: 148px; height: 164px; }
+  .persona-label { margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+  .persona { margin: 0; font-size: clamp(28px, 5vw, 42px); line-height: 1.05; }
+  .persona-line { margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .order {
+    border-top: 1px dashed color-mix(in srgb, var(--ink) 20%, transparent);
+    border-bottom: 1px dashed color-mix(in srgb, var(--ink) 20%, transparent);
+    padding: 18px 0;
+  }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; font-size: 14px; }
+  .meta div { display: flex; justify-content: space-between; gap: 12px; }
+  .meta span { color: var(--muted); }
+  .meta strong { text-align: right; }
+  ul { list-style: none; padding: 0; margin: 18px 0 0; }
+  li { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent); font-size: 16px; }
+  li:last-child { border-bottom: 0; }
+  li strong { color: var(--accent); }
+  .price { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 22px 0 8px; }
+  .price-label { color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+  .price strong { display: block; margin-top: 4px; font-size: clamp(46px, 9vw, 72px); line-height: .9; letter-spacing: -.05em; }
+  .price small { display: block; margin-top: 10px; color: var(--muted); font-size: 13px; }
+  .stamp {
+    border: 2px solid var(--accent); color: var(--accent); border-radius: 999px;
+    padding: 8px 14px; font-size: 12px; font-weight: 800; white-space: nowrap;
+    transform: rotate(-4deg);
+  }
+  blockquote {
+    margin: 18px 0 0; padding: 18px 20px; background: color-mix(in srgb, var(--soft) 40%, var(--paper));
+    border-left: 4px solid var(--gold); border-radius: 0 14px 14px 0;
+    font-size: 15px; line-height: 1.7;
+  }
+  .footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 20px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+  button {
+    margin-top: 22px; width: 100%; border: 0; border-radius: 12px; padding: 14px 18px;
+    background: var(--accent); color: #fff; font-size: 15px; font-weight: 800; cursor: pointer;
+    font-family: inherit;
+  }
+  button:active { transform: translateY(1px); }
+  .note { margin: 10px 0 0; text-align: center; color: var(--muted); font-size: 11px; }
+  @media (max-width: 560px) {
+    .inner { padding: 26px 22px 24px; }
+    .hero { grid-template-columns: 104px 1fr; gap: 16px; }
+    .fries { width: 104px; height: 120px; }
+    .meta { grid-template-columns: 1fr; }
+    .price { align-items: flex-start; flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fries .note { animation: float 3.6s ease-in-out infinite; transform-origin: center; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  }
+</style>
+</head>
+<body>
+<article class="card">
+  <div class="stripe"></div>
+  <div class="inner">
+    <div class="eyebrow"><span>Fries Ensemble</span><span>Price Card</span></div>
+    <h1>薯条多重奏</h1>
+    <p class="sub">把一顿薯条，听成一段乐章。</p>
+
+    <section class="hero">
+      <svg class="fries" viewBox="0 0 148 164" role="img" aria-label="薯条与音符插画">
+        <g fill="none" stroke="#F9D98A" stroke-width="2" opacity=".8">
+          <path d="M20 30 H128 M20 42 H128 M20 54 H128 M20 66 H128 M20 78 H128"/>
+        </g>
+        <g class="note" fill="#C8102E">
+          <circle cx="108" cy="44" r="6"/><path d="M113 44 V22 L129 18 V39" stroke="#C8102E" stroke-width="3" fill="none"/>
+          <circle cx="123" cy="40" r="5"/>
+        </g>
+        <g transform="translate(18 72)">
+          <path d="M18 70 L10 108 H112 L104 70 Z" fill="#C8102E"/>
+          <path d="M18 70 L10 108 H112 L104 70 Z" fill="none" stroke="#2A1A12" stroke-width="2" opacity=".25"/>
+          <g fill="#F2B705">
+            <rect x="30" y="8" width="12" height="70" rx="5" transform="rotate(-9 36 43)"/>
+            <rect x="47" y="0" width="12" height="76" rx="5" transform="rotate(-3 53 38)"/>
+            <rect x="64" y="6" width="12" height="72" rx="5" transform="rotate(4 70 42)"/>
+            <rect x="81" y="12" width="12" height="66" rx="5" transform="rotate(10 87 45)"/>
+          </g>
+          <g fill="#fff" opacity=".28">
+            <path d="M22 82 h76 l-3 14 H25 Z"/>
+          </g>
+          <text x="34" y="98" font-size="12" font-weight="800" fill="#fff" font-family="Microsoft YaHei, sans-serif">HOT</text>
+        </g>
+      </svg>
+      <div>
+        <p class="persona-label">你的薯条人格</p>
+        <h2 class="persona">多重奏作曲家</h2>
+        <p class="persona-line">三到四份是桌面上的小型合奏，趁热听完最合适。</p>
+      </div>
+    </section>
+
+    <section class="order">
+      <div class="meta">
+        <div><span>门店</span><strong>麦当劳北京新东安二号餐厅</strong></div>
+        <div><span>方式</span><strong>到店自取 · 外带</strong></div>
+        <div><span>份数</span><strong>3 份</strong></div>
+        <div><span>算价时间</span><strong>2026-10-24 12:54</strong></div>
+      </div>
+      <ul><li><span>中薯条</span><strong>×3</strong></li></ul>
+    </section>
+
+    <section class="price">
+      <div>
+        <div class="price-label">官方算价</div>
+        <strong>¥42.50</strong>
+        <small>原价 ¥43.50 · 已优惠 ¥1.00</small>
+      </div>
+      <div class="stamp">价格确认卡 · 尚未下单</div>
+    </section>
+
+    <blockquote>三到四份是桌面上的小型合奏，趁热听完最合适。 多重奏作曲家的今日曲目，简单但不会出错。</blockquote>
+
+    <div class="footer">
+      <span>数据来自麦当劳中国 MCP 实时返回。价格与供应状态以官方为准。</span>
+      <span>非麦当劳官方产品</span>
+    </div>
+
+    <button id="copy" type="button" data-caption="我的薯条人格是「多重奏作曲家」：中薯条 ×3，官方算价 ¥42.50。三到四份是桌面上的小型合奏，趁热听完最合适。 多重奏作曲家的今日曲目，简单但不会出错。 #薯条多重奏 #麦当劳MCP">复制分享文案</button>
+    <p class="note">卡片不包含支付链接、手机号或账户信息。</p>
+  </div>
+</article>
+<script>
+  const button = document.getElementById("copy");
+  button.addEventListener("click", async () => {
+    const caption = button.getAttribute("data-caption") || "";
+    try {
+      await navigator.clipboard.writeText(caption);
+      button.textContent = "已复制";
+    } catch (error) {
+      button.textContent = "请手动复制";
+    }
+  });
+</script>
+</body>
+</html>

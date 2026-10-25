@@ -63,6 +63,26 @@
 
 表示当前解析规则未找到可售候选。检查门店、时段、供应状态和响应字段；不要声称接口返回空菜单，除非原始响应确实为空。
 
+## 分享卡摘要约定
+
+分享卡输入为归一化 JSON，最小字段如下：
+
+```json
+{
+  "store": "门店名称",
+  "order_type": "到店自取",
+  "take_way": "外带",
+  "items": [{"name": "中薯条", "quantity": 3}],
+  "original_price_yuan": 43.5,
+  "discount_yuan": 1.0,
+  "total_yuan": 42.5,
+  "price_verified_at": "2026-10-24 12:54",
+  "created_order": false
+}
+```
+
+`total_yuan`、`original_price_yuan` 和 `discount_yuan` 必须由 `calculate-price` 返回的分值除以 100 得到。`created_order=false` 时卡片显示“价格确认卡 · 尚未下单”；只有实际创建订单后才能设为 `true`。摘要不得包含支付链接、手机号、收货地址、Token 或账户标识。
+
 ## 写操作边界
 
 规划器与只读联调客户端都不会调用 `create-order`。在 WorkBuddy 中执行真实下单时，必须先展示当前门店、就餐方式、商品、数量和官方总价，再获得明确确认。任何价格或商品变化都会使旧确认失效。

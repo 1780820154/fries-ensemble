@@ -8,6 +8,8 @@
 
 - 一句话下单：识别中文或数字份数、规格和风味。
 - 三种快捷预设：独奏 1 份中薯、二重奏 2 份中薯、分享装 4 份中薯。
+- 薯条人格：根据份数生成“独奏家 / 二重奏指挥 / 多重奏作曲家 / 薯条乐团团长”和一句乐评。
+- 分享卡：用官方算价生成离线 HTML 价格确认卡，可复制分享文案，不包含支付信息。
 - 实时菜单：按当前门店和时段筛选独立薯条，排除套餐与薯饼。
 - 官方算价：最终金额只采用 `calculate-price` 返回结果。
 - 防误触：订单摘要确认后才允许 `create-order`；价格变化需重新确认。
@@ -95,6 +97,20 @@ python scripts/mcp_client.py call --tool query-meals --args-file <按实时schem
 python scripts/smoke_test.py
 ```
 
+## 薯条人格分享卡
+
+官方算价成功后，把门店、商品、金额和算价时间归一化为 JSON，即可生成一张离线分享卡：
+
+```bash
+python scripts/make_share_card.py \
+  --summary examples/order-summary.sample.json \
+  --output examples/share-card.sample.html
+```
+
+示例摘要中的数据仅用于演示。真实使用时，`total_yuan` 必须来自 `calculate-price` 返回值除以 100。卡片会显示“价格确认卡 · 尚未下单”，除非订单确实已经创建；不包含支付链接、手机号、地址或 Token。
+
+可选主题：`concert`（默认）、`midnight`、`picnic`。
+
 ## 测试
 
 ```bash
@@ -117,13 +133,19 @@ fries-ensemble/
 ├── scripts/
 │   ├── fries_planner.py
 │   ├── mcp_client.py
+│   ├── smoke_test.py
+│   ├── make_share_card.py
 │   └── validate_repo.py
 ├── references/
 │   └── data-contract.md
+├── examples/
+│   ├── order-summary.sample.json
+│   └── share-card.sample.html
 └── tests/
     ├── fixtures/menu.sample.json
     ├── test_fries_planner.py
-    └── test_mcp_client.py
+    ├── test_mcp_client.py
+    └── test_share_card.py
 ```
 
 ## 边界与故障处理

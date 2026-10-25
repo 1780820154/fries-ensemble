@@ -102,6 +102,16 @@ python -m unittest discover -s tests -v
 
 未调用 `create-order`，因此未创建订单。演示查询使用公开城市与关键词，未提交私人地址。
 
+## 趣味功能追加记录
+
+2026-10-25，按用户“继续增加更有趣的功能”的要求，WorkBuddy 增加两项能力：
+
+1. **薯条人格与乐评**：按总份数生成“独奏家 / 二重奏指挥 / 多重奏作曲家 / 薯条乐团团长”，并为混合商品补充“多声部”乐评。逻辑是确定性函数，不调用模型，不编造营养或价格数据。
+2. **价格确认分享卡**：`scripts/make_share_card.py` 读取归一化订单摘要，生成自包含 HTML。卡片展示门店、取餐方式、商品、官方算价、算价时间和人格乐评；未下单时明确标注“价格确认卡 · 尚未下单”。卡片不包含支付链接、手机号、地址或 Token，也没有任何外链资源。
+3. 支持 `concert`、`midnight`、`picnic` 三种主题；提供 `examples/order-summary.sample.json` 与 `examples/share-card.sample.html` 演示。
+4. 新增 `tests/test_share_card.py`，覆盖人格映射、金额展示、HTML 转义、外链检查和主题切换。全部测试通过。
+5. 安全边界：分享卡只使用官方算价后的归一化数据；未下单与已下单状态严格区分；不会自动发布到社交平台。
+
 ## GitHub 发布追加记录
 
 2026-10-24，WorkBuddy 通过本机 Git Credential Manager 完成 GitHub 浏览器授权后，创建并推送公开仓库：

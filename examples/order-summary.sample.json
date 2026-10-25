@@ -1,0 +1,16 @@
+{
+  "store": "麦当劳北京新东安二号餐厅",
+  "order_type": "到店自取",
+  "take_way": "外带",
+  "items": [
+    {
+      "name": "中薯条",
+      "quantity": 3
+    }
+  ],
+  "original_price_yuan": 43.5,
+  "discount_yuan": 1.0,
+  "total_yuan": 42.5,
+  "price_verified_at": "2026-10-24 12:54",
+  "created_order": false
+}

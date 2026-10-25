@@ -18,6 +18,8 @@ REQUIRED_FILES = (
     "workbuddy.md",
     "scripts/fries_planner.py",
     "scripts/mcp_client.py",
+    "scripts/smoke_test.py",
+    "scripts/make_share_card.py",
 )
 EXPECTED_DECLARATION = """# 参赛声明
 
@@ -94,12 +96,14 @@ def validate() -> list[str]:
         relative = path.relative_to(ROOT)
         if path.name in FORBIDDEN_FILENAMES or path.suffix == ".token":
             errors.append(f"仓库包含禁止的凭证文件：{relative}")
-        if path.suffix.lower() not in {".md", ".py", ".json", ".gitignore", ".txt"} and path.name != ".gitignore":
+        if path.suffix.lower() not in {".md", ".py", ".json", ".html", ".gitignore", ".txt"} and path.name != ".gitignore":
             continue
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
+        if path.suffix.lower() == ".html" and re.search(r"https?://", text, re.I):
+            errors.append(f"{relative} 包含外部资源链接，分享卡应保持自包含")
         for label, pattern in SECRET_PATTERNS.items():
             if pattern.search(text):
                 errors.append(f"{relative} 可能包含{label}")
