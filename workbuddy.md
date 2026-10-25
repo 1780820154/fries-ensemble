@@ -140,3 +140,4 @@ python -m unittest discover -s tests -v
 - Issue 地址：https://github.com/M-China/mcd-developer-innovation-challenge/issues/1205
 - Issue 状态：open
 - 提交时间：2026-10-24
+- 说明更新：2026-10-25 已补充“薯条人格分享卡、本地历史份数与数量成就”，保留官方字段格式。
