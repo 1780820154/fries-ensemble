@@ -111,6 +111,7 @@ python -m unittest discover -s tests -v
 3. 支持 `concert`、`midnight`、`picnic` 三种主题；提供 `examples/order-summary.sample.json` 与 `examples/share-card.sample.html` 演示。
 4. 新增 `tests/test_share_card.py`，覆盖人格映射、金额展示、HTML 转义、外链检查和主题切换。全部测试通过。
 5. 安全边界：分享卡只使用官方算价后的归一化数据；未下单与已下单状态严格区分；不会自动发布到社交平台。
+6. 2026-10-25 已推送至公开仓库，提交 `3f69cb9 Add fries persona share card`。
 
 ## GitHub 发布追加记录
 
